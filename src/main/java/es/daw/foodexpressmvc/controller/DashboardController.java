@@ -11,7 +11,7 @@ public class DashboardController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model, Principal principal){
-        if(principal != null){
+        if (principal != null){
             model.addAttribute("username", principal.getName());
         }
         return "dashboard";

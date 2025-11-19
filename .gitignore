@@ -1,33 +1,78 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
+out/
+.idea_modules/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+### Compilación ###
+target/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+classes/
+out/
 
-### VS Code ###
+### Logs ###
+*.log
+
+### Sistema operativo ###
+.DS_Store
+Thumbs.db
+
+### Spring Boot ###
+*.jar
+*.war
+*.class
+
+### Archivos de configuración sensibles ###
+.env
+.env.*
+*.env.local
+*.local.env
+*secret*
+*secrets*
+application-local.properties
+application-local.yml
+application-local.yaml
+
+# Si trabajáis con perfiles externos cargados por spring.config.import
+config/*.env
+config/*.yml
+config/*.yaml
+config/*.properties
+
+### Maven ###
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+settings.xml
+.settings/
+dependency-reduced-pom.xml
+
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+gradle-app.settings
+
+### Archivos temporales ###
+*.tmp
+*.bak
+*.swp
+*~
+*.orig
+
+### Archivos de pruebas ###
+bin/
+
+### Bases de datos embebidas ###
+*.db
+*.mv.db
+*.h2.db
+*.trace.db
+
+### Node (si hubiera frontend dentro del mismo repo) ###
+node_modules/
+dist/
+
+### Otros ###
 .vscode/

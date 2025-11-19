@@ -1,4 +1,3 @@
-
 package es.daw.foodexpressmvc.exception;
 
 import org.springframework.ui.Model;
