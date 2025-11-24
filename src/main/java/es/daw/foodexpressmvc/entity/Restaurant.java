@@ -1,4 +1,4 @@
-package es.daw.foodexpressapi.entity;
+package es.daw.foodexpressmvc.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package es.daw.foodexpressapi.repository;
+package es.daw.foodexpressmvc.repository;
 
-import es.daw.foodexpressapi.entity.Restaurant;
+import es.daw.foodexpressmvc.entity.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
