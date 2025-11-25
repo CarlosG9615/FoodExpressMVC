@@ -1,3 +1,4 @@
+
 package es.daw.foodexpressmvc.controller;
 
 import es.daw.foodexpressmvc.dto.RestaurantDTO;
@@ -32,12 +33,13 @@ public class RestaurantController {
 
     }
 
-    @GetMapping("/menu")
-    public String showMenu(Principal principal, Model model) {
-        model.addAttribute(principal.getName());
-        return "restaurants/restaurants-menu";
-
-    }
+//    @GetMapping("/menu")
+//    //public String showMenu(Principal principal, Model model) {
+//    public String showMenu(){
+//        //model.addAttribute(principal.getName());
+//        return "restaurants/restaurants-menu";
+//
+//    }
 
     @GetMapping("/create")
     public String showForm(Model model, Principal principal) {

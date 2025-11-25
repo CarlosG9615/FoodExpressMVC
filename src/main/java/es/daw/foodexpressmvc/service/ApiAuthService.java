@@ -1,14 +1,30 @@
+
 package es.daw.foodexpressmvc.service;
 
+import es.daw.foodexpressmvc.dto.ApiLoginRequest;
+import es.daw.foodexpressmvc.dto.ApiLoginResponse;
+import es.daw.foodexpressmvc.exception.ConnectionApiRestException;
+import es.daw.foodexpressmvc.session.ApiSessionToken;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+/*
+Spring Boot MVC es un entorno servlet, y Spring inyecta automáticamente:
+HttpSession
+HttpServletRequest
+HttpServletResponse
+Principal
+ */
 @Service
 @RequiredArgsConstructor
 public class ApiAuthService {
 
+    //private final HttpSession session;
+
+    private final ApiSessionToken apiSessionToken;
 
     private final WebClient webClientAuth;
 
@@ -19,27 +35,43 @@ public class ApiAuthService {
     private String apiPassword;
 
     public String getToken() {
-//        ApiLoginRequest request = new ApiLoginRequest();
-//        request.setUsername(apiUsername);
-//        request.setPassword(apiPassword);
+
+        // FORMA 1
+//        String storedToken = (String)session.getAttribute("token");
 //
-//        try {
-//            ApiLoginResponse response = webClientAuth
-//                    .post()
-//                    .uri("") // authURL ya es /auth/login
-//                    .bodyValue(request)
-//                    .retrieve()
-//                    .bodyToMono(ApiLoginResponse.class)
-//                    .block();
-//
-//            if (response == null || response.getToken() == null) {
-//                throw new ConnectApiRestException("API login failed: no token received");
-//            }
-//
-//            return response.getToken();
-//        } catch (Exception ex) {
-//            throw new ConnectApiRestException("Could not authenticate against FoodExpress API");
+//        if (storedToken != null) {
+//            return storedToken;
 //        }
-        return "";
+
+        // FORMA 2: con componente de sessionScope
+        if (apiSessionToken.getToken() != null) {
+            return apiSessionToken.getToken();
+        }
+        // Si es nulo...
+
+        ApiLoginRequest request = new ApiLoginRequest();
+        request.setUsername(apiUsername);
+        request.setPassword(apiPassword);
+
+        try {
+            ApiLoginResponse response = webClientAuth
+                    .post()
+                    //.uri("") // authURL ya es /auth/login
+                    .bodyValue(request)
+                    .retrieve()
+                    .bodyToMono(ApiLoginResponse.class)
+                    .block();
+
+            if (response == null || response.getToken() == null) {
+                throw new ConnectionApiRestException("API login failed: no token received");
+            }
+
+            //session.setAttribute("token", response.getToken());
+            apiSessionToken.setToken(response.getToken());
+
+            return response.getToken();
+        } catch (Exception ex) {
+            throw new ConnectionApiRestException(ex.getMessage());
+        }
     }
 }
