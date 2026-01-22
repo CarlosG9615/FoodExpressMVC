@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FoodExpress – Información</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .hero {
+            background-color: #ffffff;
+            padding: 50px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .hero img {
+            max-width: 340px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">FoodExpress</a>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="container mt-5">
+
+    <div class="hero text-center mx-auto">
+        <h1 class="fw-bold">Bienvenido a FoodExpress</h1>
+        <p class="lead mt-3 text-muted">Disfruta explorando la aplicación antes de registrarte</p>
+
+        <div class="mt-4">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=60"
+                 alt="FoodExpress public image">
+        </div>
+
+        <p class="mt-4 fs-5">
+            FoodExpress es una aplicación para gestionar restaurantes y platos, utilizada en la
+            <span class="fw-bold">PRÁCTICA EVALUABLE SPRING I</span>.
+            Aquí puedes consultar información pública y decidir si quieres crear tu cuenta para acceder al área privada.
+        </p>
+
+        <div class="d-flex justify-content-center gap-4 mt-4">
+
+            <!-- Botón registrarse -->
+            <a th:href="@{/register}" class="btn btn-primary btn-lg">
+                Crear Cuenta
+            </a>
+
+            <!-- Botón volver al home -->
+            <a th:href="@{/}" class="btn btn-outline-secondary btn-lg">
+                Volver al Inicio
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<footer class="text-center mt-5 mb-3 text-muted">
+    &copy; 2025 FoodExpress - DAW
+</footer>
+
+</body>
+</html>
